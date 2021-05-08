@@ -35,11 +35,18 @@ def check_availability(pin_code):
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, 'html.parser')
 
+    date_result = soup.find_all('li', attrs={'class': 'availability-date'})
     hostipal_names_result = soup.find_all('h5', attrs={'class': 'center-name-title'})
     hostipal_address_result = soup.find_all('p', attrs={'class': 'center-name-text'})
+    row_result = soup.find_all('ul', attrs={'class': 'slot-available-wrap'})
+
 
     hostipal_names = []
     hostipal_addresses = []
+    current_dates = []
+
+    for date in date_result:
+        current_dates.append(date.text)
 
     for hospital in hostipal_names_result:
         hostipal_names.append(hospital.text)
@@ -47,33 +54,28 @@ def check_availability(pin_code):
     for hospital_address in hostipal_address_result:
         hostipal_addresses.append(hospital_address.text)
 
+    all_tag_list = []
+
+    for row in row_result:
+        als = row.find_all('li')
+        row_wise_list = []
+        for al in als:
+            row_wise_list.append(al.div.text)
+        all_tag_list.append(row_wise_list)
+
     print(hostipal_names, "\n", "SIZE:{}".format(len(hostipal_names)))
     print(hostipal_addresses, "\n", "SIZE:{}".format(len(hostipal_addresses)))
+    print(all_tag_list, "\n", "SIZE:{}".format(len(all_tag_list)))
 
+    columns_list = current_dates
+    vaccine_data = pd.DataFrame(index=hostipal_names, columns=columns_list[0:6])
 
+    for x in range(len(hostipal_names)):
+        vaccine_data.loc[hostipal_names[x]] = all_tag_list[x]
+
+    print(vaccine_data.head())
 
     print("check")
-
-    # try:
-    #     print("Clicking on: {}".format(sector))
-    #     element = driver.find_element_by_link_text(sector)
-    #     driver.execute_script("arguments[0].scrollIntoView();", element)
-    #     driver.find_element_by_link_text(sector).click()
-    #     WebDriverWait(driver, 30)
-    #
-    #     page_df = pd.read_html(driver.current_url)
-    #     table_df = page_df[1]
-    #     table_df["Company Name"] = table_df["Company Name"].apply(lambda x: x.split(" Add to Watchlist")[0])
-    #     print(table_df)
-    #     ltp_data = ltp_data.append(table_df)
-    #     print("---------------------------------------------------------------------------------------------------")
-    #     print(ltp_data)
-    #     print("---------------------------------------------------------------------------------------------------")
-    #
-    #
-    # except Exception as e:
-    #     print("Failed to retrieve:{}".format(sector))
-    #     print("Exception:{}".format(e))
 
     driver.quit()
 
