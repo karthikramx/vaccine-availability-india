@@ -7,7 +7,7 @@ The main.py contains a class with methods to
   + extract informaiton about date, hospital and vaccine type for all age groups and stores it in a notification string
   + A push buttlet function to send notifications to your phone
 
-The available vaccine information in stores in self.notification variable
+The available vaccine information is stored in self.notification variable, use that however you like.
 
 Dependencies/requirements
   + pandas
