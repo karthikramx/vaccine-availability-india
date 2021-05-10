@@ -27,3 +27,5 @@ Links
   + push bulltet: https://www.pushbullet.com/ - pretty self explanatory
 
 
+Video demo
+[![](http://img.youtube.com/vi/LOPK5CIkcq0/0.jpg)](http://www.youtube.com/watch?v=LOPK5CIkcq0 "")
