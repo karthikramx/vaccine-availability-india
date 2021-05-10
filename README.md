@@ -18,12 +18,12 @@ Dependencies/requirements
 
 Other instructions
   + You will have to replace the chromedriver.exe with your browser type / version
-  + You will have to create a pustbullet account and download the app to get notifications on the phone
-  + replace the push_bullet_token with your push button token
+  + You will have to create a pushbullet account and download the app to get notifications on your phone
+  + replace the push_bullet_token var with your push button token
 
 
 Links
-  + Chrome driver download: https://chromedriver.chromium.org/downloads - check your chrome browser version in browser settings
+  + Chrome driver download: https://chromedriver.chromium.org/downloads - check your chrome browser version in the browser settings
   + push bulltet: https://www.pushbullet.com/ - pretty self explanatory
 
 
