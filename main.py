@@ -15,7 +15,7 @@ BROWSER_Y_SIZE = 900
 weeks = 5
 pin_code = 403711
 url = "https://www.cowin.gov.in/home"
-push_bullet_token = "you push push bullet tokem goes here"
+push_bullet_token = "you push bullet token goes here"
 
 
 class cowin_ckeck:
