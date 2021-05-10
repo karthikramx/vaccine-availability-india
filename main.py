@@ -18,7 +18,7 @@ url = "https://www.cowin.gov.in/home"
 push_bullet_token = "you push bullet token goes here"
 
 
-class cowin_ckeck:
+class cowin_check:
     def __init__(self):
         self.notification = ""
         self.service = webdriver.chrome.service.Service('./chromedriver')
@@ -155,7 +155,7 @@ class cowin_ckeck:
             print('Message sent')
 
 
-CA = cowin_ckeck()
+CA = cowin_check()
 
 while True:
     # extracts all data and stores it as a csv
