@@ -1,10 +1,10 @@
 import time
 import json
 import requests
+import pyttsx3
 import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
-
 
 HEADLESS_MODE = False
 BROWSER_X_POS = 750
@@ -13,13 +13,14 @@ BROWSER_X_SIZE = 800
 BROWSER_Y_SIZE = 900
 
 weeks = 5
-pin_code = 403711
+pin_code = 122001
 url = "https://www.cowin.gov.in/home"
-push_bullet_token = "you push bullet token goes here"
+push_bullet_token = "o.JgfmyvaSfB6QUGHbC9bUbR7DPDIDs8M8"
 
 
 class cowin_check:
     def __init__(self):
+        self.engine = pyttsx3.init()
         self.notification = ""
         self.service = webdriver.chrome.service.Service('./chromedriver')
         self.service.start()
@@ -138,6 +139,7 @@ class cowin_check:
             self.notification = "Vaccine availaibility - PIN:{}\n\n".format(
                 pin_code) + self.notification + "\n\n" + "BOOK NOW, thank me later - karthik ram"
             self.pushbullet_message("COWIN WEBSCAPPER", self.notification)
+            self.voice_message("Vaccines available. Book now.")
         else:
             self.notification = "Vaccine availaibility - PIN:{}\n\n".format(pin_code) + "No vaccines found :/"
             print(self.notification)
@@ -154,6 +156,10 @@ class cowin_check:
         else:
             print('Message sent')
 
+    def voice_message(self, msg):
+        self.engine.say(msg)
+        self.engine.runAndWait()
+
 
 CA = cowin_check()
 
@@ -168,6 +174,6 @@ while True:
     CA.send_bullet_notification()
 
     # checks every 5 minutes
-    time.sleep(300)
+    time.sleep(30)
 
 print("stop")
