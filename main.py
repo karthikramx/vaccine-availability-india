@@ -15,7 +15,7 @@ BROWSER_Y_SIZE = 900
 weeks = 5
 pin_code = 122001
 url = "https://www.cowin.gov.in/home"
-push_bullet_token = "o.JgfmyvaSfB6QUGHbC9bUbR7DPDIDs8M8"
+push_bullet_token = "push bullet token goes here"
 
 
 class cowin_check:
